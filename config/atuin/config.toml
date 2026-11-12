@@ -1,0 +1,24 @@
+## atuin — shell history in SQLite (fuzzy search on Ctrl-R)
+## https://atuin.sh/docs/config
+
+# how the search UI looks
+style = "compact"
+inline_height = 24
+search_mode = "fuzzy"
+filter_mode = "global"
+filter_mode_shell_up_key_binding = "session"
+search_mode_shell_up_key_binding = "prefix"
+exit_mode = "return-original"
+
+# Catppuccin Mocha-ish colours for the search UI
+[theme]
+name = "catppuccin-mocha-mauve"
+
+[ui]
+columns = ["duration", "time", "directory", "host", "command"]
+invert = false
+scroll_context_lines = 3
+
+# stats on shell start are noisy; keep them quiet
+[stats]
+common_subcommands = ["cargo", "git", "kubectl", "pnpm", "yarn", "docker", "systemctl", "nmcli"]

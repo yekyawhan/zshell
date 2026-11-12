@@ -1,0 +1,66 @@
+# y3kh — lazygit (Catppuccin Mocha mauve)
+# NOTE: lazygit 0.66 picks colours from `darkTheme` when `colorScheme: dark`;
+# putting them only under `theme:` is silently ignored on this build.
+gui:
+  disableStartupPopups: true
+  colorScheme: dark
+  nerdFontsVersion: "3"
+  darkTheme:
+    activeBorderColor:
+      - '#cba6f7'
+      - bold
+    inactiveBorderColor:
+      - '#585b70'
+    searchingActiveBorderColor:
+      - '#f9e2af'
+    optionsTextColor:
+      - '#89b4fa'
+    selectedLineBgColor:
+      - '#313244'
+    inactiveViewSelectedLineBgColor:
+      - '#45475a'
+    cherryPickedCommitFgColor:
+      - '#cba6f7'
+    cherryPickedCommitBgColor:
+      - '#45475a'
+    markedBaseCommitFgColor:
+      - '#89b4fa'
+    markedBaseCommitBgColor:
+      - '#f9e2af'
+    unstagedChangesColor:
+      - '#f38ba8'
+    defaultFgColor:
+      - '#cdd6f4'
+    authorColors:
+      '*': '#b4befe'
+  showFileTree: true
+  showRandomTip: false
+  border: rounded
+  sidePanelWidth: 0.25
+  expandFocusedSidePanel: true
+  commitLength:
+    show: true
+  shortTimeFormat: "15:04"
+  timeFormat: "02 Jan 06 15:04"
+  scrollHeight: 4
+  mouseEvents: true
+  skipNoStagedFilesWarning: true
+git:
+  diffRenderers:
+    - colorArg: always
+      command: delta --paging=never --side-by-side
+  autoFetch: true
+  autoRefresh: true
+  overrideGpg: false
+  commit:
+    signOff: false
+  merging:
+    manualCommit: false
+refresher:
+  refreshInterval: 5
+  fetchInterval: 30
+update:
+  method: never
+confirmOnQuit: false
+os:
+  editPreset: "nvim"

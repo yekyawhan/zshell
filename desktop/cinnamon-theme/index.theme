@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Catppuccin-Mocha-Cinnamon
+Comment=Catppuccin Mocha (Aylin)
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=catppuccin-mocha-mauve-standard+default
+IconTheme=Papirus-Dark
+CursorTheme=Bibata-Modern-Classic

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+  :root{
+    --base:#1e1e2e; --mantle:#181825; --crust:#11111b; --surface0:#313244;
+    --surface1:#45475a; --text:#cdd6f4; --subtext:#a6adc8; --overlay:#6c7086;
+    --mauve:#cba6f7; --blue:#89b4fa; --green:#a6e3a1; --yellow:#f9e2af;
+    --peach:#fab387; --red:#f38ba8; --teal:#94e2d5; --pink:#f5c2e7;
+    --mono:'MesloLGLDZ Nerd Font','DejaVu Sans Mono',monospace;
+    --sans:'DejaVu Sans','Noto Sans',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1280px;height:640px;overflow:hidden}
+  body{
+    background:
+      radial-gradient(760px 420px at 84% 18%, rgba(203,166,247,.20), transparent 62%),
+      radial-gradient(620px 460px at 6% 96%, rgba(137,180,250,.14), transparent 60%),
+      linear-gradient(155deg,#11111b 0%,#1a1a28 48%,#181825 100%);
+    font-family:var(--sans); color:var(--text);
+    display:flex; align-items:center; padding:0 54px; position:relative;
+  }
+  .grid{position:absolute;inset:0;opacity:.22;
+    background-image:radial-gradient(rgba(205,214,244,.10) 1px, transparent 1px);
+    background-size:26px 26px;}
+  .col{position:relative;z-index:2}
+  .left{width:520px;padding-right:26px}
+  .mark{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+  .mark .chip{
+    font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--mauve);border:1px solid rgba(203,166,247,.45);border-radius:999px;
+    padding:5px 13px;background:rgba(203,166,247,.08)}
+  .mark .dot{width:9px;height:9px;border-radius:50%;background:var(--green);
+    box-shadow:0 0 12px var(--green)}
+  h1{font-family:var(--mono);font-size:86px;line-height:1;letter-spacing:-2px;
+     color:#fff;font-weight:700;margin-bottom:6px}
+  h1 .caret{display:inline-block;width:34px;height:74px;background:var(--mauve);
+     vertical-align:-9px;margin-left:12px;border-radius:4px;
+     box-shadow:0 0 46px rgba(203,166,247,.75);animation:none}
+  .sub{font-size:19px;color:var(--subtext);margin:10px 0 22px;line-height:1.45}
+  .sub b{color:var(--text);font-weight:600}
+  .chips{display:flex;flex-wrap:wrap;gap:9px;max-width:500px}
+  .chips span{font-family:var(--mono);font-size:12.5px;padding:6px 11px;border-radius:8px;
+    background:rgba(49,50,68,.85);border:1px solid var(--surface1);color:var(--text)}
+  .chips span.m{border-color:rgba(203,166,247,.55);color:var(--mauve)}
+  .chips span.b{border-color:rgba(137,180,250,.55);color:var(--blue)}
+  .chips span.g{border-color:rgba(166,227,161,.55);color:var(--green)}
+  .chips span.y{border-color:rgba(249,226,175,.55);color:var(--yellow)}
+  .install{margin-top:24px;font-family:var(--mono);font-size:13px;color:var(--overlay)}
+  .install .pill{display:inline-block;margin-top:8px;padding:9px 14px;border-radius:9px;
+    background:rgba(17,17,27,.9);border:1px solid var(--surface1);color:var(--teal)}
+  .install .pill i{color:var(--mauve);font-style:normal}
+
+  /* ── drawn terminal ─────────────────────────────────────────────── */
+  .right{flex:1;display:flex;justify-content:flex-end}
+  .term{width:600px;border-radius:14px;overflow:hidden;
+    background:rgba(24,24,37,.96);border:1px solid rgba(203,166,247,.42);
+    box-shadow:0 34px 90px rgba(0,0,0,.62), 0 0 0 1px rgba(0,0,0,.35);
+    transform:perspective(1400px) rotateY(-7deg) rotateX(2deg);}
+  .bar{display:flex;align-items:center;gap:7px;padding:11px 13px;
+    background:rgba(49,50,68,.75);border-bottom:1px solid rgba(69,71,90,.75)}
+  .bar i{width:11px;height:11px;border-radius:50%;display:block}
+  .bar .r{background:var(--red)} .bar .y{background:var(--yellow)} .bar .g{background:var(--green)}
+  .bar b{margin-left:8px;font:500 12px var(--mono);color:var(--subtext)}
+  .body{padding:15px 17px 20px;font-family:var(--mono);font-size:14px;line-height:1.75}
+  .row{white-space:pre}
+  .p1{color:var(--green)} .p2{color:var(--blue)} .p3{color:var(--mauve)}
+  .cmd{color:var(--text)} .dim{color:var(--overlay)}
+  .drop{margin:9px 0 4px;border:1px solid rgba(203,166,247,.35);border-radius:9px;
+    background:rgba(17,17,27,.75);overflow:hidden}
+  .drop .head{padding:7px 12px;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--mauve);background:rgba(203,166,247,.10);border-bottom:1px solid rgba(203,166,247,.22)}
+  .drop .it{display:flex;gap:11px;padding:6px 12px;font-size:13.5px;color:var(--subtext)}
+  .drop .it span:first-child{width:16px;text-align:center}
+  .drop .it.sel{background:var(--surface0);color:var(--text)}
+  .drop .it .desc{color:var(--overlay);margin-left:auto;font-size:12px}
+  .drop .foot{padding:6px 12px;font-size:11.5px;color:var(--overlay);
+    border-top:1px solid rgba(69,71,90,.6)}
+  .badge{position:absolute;right:54px;bottom:26px;z-index:3;font-family:var(--mono);
+    font-size:12.5px;color:var(--overlay);letter-spacing:.06em}
+  .badge b{color:var(--mauve);font-weight:600}
+</style></head>
+<body>
+  <div class="grid"></div>
+
+  <div class="col left">
+    <div class="mark"><span class="dot"></span><span class="chip">catppuccin mocha</span></div>
+    <h1>zshell<span class="caret"></span></h1>
+    <div class="sub">A whole terminal, themed end to end — <b>zsh</b> with a coloured completion
+      dropdown, <b>atuin</b> history, <b>lazygit</b>, <b>tmux</b>, <b>LazyVim</b> and a
+      <b>fastfetch</b> banner. Your own aliases are carried over, never lost.</div>
+    <div class="chips">
+      <span class="m">TAB dropdown</span>
+      <span class="b">atuin history</span>
+      <span class="g">lazygit + delta</span>
+      <span class="y">tmux status bar</span>
+      <span>LazyVim</span>
+      <span>fastfetch banner</span>
+    </div>
+    <div class="install">one line, any Ubuntu 24.04 / Mint 22 host
+      <div class="pill"><i>$</i> bash -c "$(curl -fsSL \<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;https://raw.githubusercontent.com/yekyawhan/\<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;zshell/main/install.sh)"</div>
+    </div>
+  </div>
+
+  <div class="col right">
+    <div class="term">
+      <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><b>~ — zsh</b></div>
+      <div class="body">
+        <div class="row"><span class="p1">❯</span> <span class="p2">~/work</span> <span class="cmd">git che</span><span class="dim">▌</span></div>
+        <div class="drop">
+          <div class="head">completions</div>
+          <div class="it sel"><span>❯</span><span>checkout</span><span class="desc">switch branches</span></div>
+          <div class="it"><span> </span><span>cherry-pick</span><span class="desc">apply a commit</span></div>
+          <div class="it"><span> </span><span>check-ignore</span><span class="desc">debug .gitignore</span></div>
+          <div class="it"><span> </span><span>checkout-index</span><span class="desc">copy files out</span></div>
+          <div class="foot">4/12 · type to filter · / to keep open</div>
+        </div>
+        <div class="row"><span class="p1">❯</span> <span class="p3">git checkout</span> <span class="dim">-</span></div>
+        <div class="row"><span class="dim">Switched to branch 'theme/tmux-status'</span></div>
+        <div class="row"><span class="p1">❯</span> <span class="cmd">lg</span> <span class="dim">·</span> <span class="cmd">btop</span> <span class="dim">·</span> <span class="cmd">nvim</span> <span class="dim">·</span> <span class="cmd">zj</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="badge"><b>zshell</b> · yekyawhan/zshell · MIT</div>
+</body></html>

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "small",
+    "padding": { "top": 1, "left": 2 }
+  },
+  "display": {
+    "separator": "  ",
+    "color": {
+      "keys": "magenta",
+      "title": "blue",
+      "output": "white"
+    }
+  },
+  "modules": [
+    "title",
+    "separator",
+    { "type": "os", "key": " OS", "keyColor": "blue" },
+    { "type": "kernel", "key": " Kernel", "keyColor": "blue" },
+    { "type": "wm", "key": " Desktop", "keyColor": "blue" },
+    { "type": "shell", "key": " Shell", "keyColor": "blue" },
+    { "type": "packages", "key": " Packages", "keyColor": "blue" },
+    "separator",
+    {
+      "type": "command",
+      "key": " LAN IP",
+      "keyColor": "green",
+      "text": "ip -4 -o addr show scope global 2>/dev/null | awk '$2 !~ /^(ppp|tun|tailscale|docker|br-|virbr|veth)/ {print $4}' | paste -sd', ' - | sed 's|/[0-9]*||g' | grep . || echo none"
+    },
+    {
+      "type": "command",
+      "key": " Tailnet",
+      "keyColor": "green",
+      "text": "tailscale ip -4 2>/dev/null | head -1 || echo 'tailscale down'"
+    },
+    {
+      "type": "command",
+      "key": " VPN",
+      "keyColor": "green",
+      "text": "nmcli -t -f NAME,TYPE connection show --active 2>/dev/null | awk -F: '$2==\"vpn\"{printf \"%s \", $1}' | sed 's/ $//' | grep . || echo 'none'"
+    },
+    "separator",
+    { "type": "cpu", "key": " CPU", "keyColor": "yellow", "showPeCoreCount": true },
+    { "type": "gpu", "key": " GPU", "keyColor": "yellow" },
+    { "type": "memory", "key": " RAM", "keyColor": "yellow" },
+    { "type": "disk", "key": " Disk", "keyColor": "yellow", "folders": "/" },
+    { "type": "uptime", "key": " Uptime", "keyColor": "yellow" },
+    "break",
+    { "type": "colors", "key": " Palette", "keyColor": "cyan", "symbol": "block" }
+  ]
+}

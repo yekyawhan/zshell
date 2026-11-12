@@ -1,0 +1,29 @@
+// y3kh — zellij (Catppuccin Mocha, tmux-like feel)
+theme "catppuccin-mocha"
+default_shell "zsh"
+copy_command "xclip -selection clipboard"
+copy_clipboard "system"
+pane_frames false
+simplified_ui true
+mouse_mode true
+scroll_buffer_size 50000
+copy_on_select true
+session_serialization true
+
+keybinds {
+    unbind "Ctrl o"
+    unbind "Ctrl h"
+    normal {
+        // Ctrl+g opens the ssh host launcher (same muscle memory as zsh)
+        bind "Ctrl g" { WriteChars "hosts-list\r"; }
+        bind "Ctrl f" { ToggleFloatingPanes; }
+    }
+    shared_except "locked" {
+        bind "Alt h" { MoveFocus "Left"; }
+        bind "Alt l" { MoveFocus "Right"; }
+        bind "Alt j" { MoveFocus "Down"; }
+        bind "Alt k" { MoveFocus "Up"; }
+        bind "Alt n" { NewPane; }
+        bind "Alt d" { NewPane "Down"; }
+    }
+}

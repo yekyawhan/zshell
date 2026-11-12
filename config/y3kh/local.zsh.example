@@ -1,0 +1,25 @@
+# ─── local.zsh ─────────────────────────────────────────────────────────────
+# Machine- and person-specific zsh overrides.  NOT tracked by the repo:
+# the installer copies this template to ~/.config/y3kh/local.zsh on first run
+# and ~/.zshrc sources it LAST — so anything here overrides the shared config.
+#
+# Good things to keep here: ssh host shortcuts, VPN helpers, wake-on-lan,
+# work-specific paths, project aliases, anything with a hostname or an IP.
+
+# ── ssh shortcuts ──────────────────────────────────────────────────────────
+# alias srv='ssh user@10.0.0.5'
+# alias nas='ssh admin@nas.local'
+
+# ── vpn helpers ────────────────────────────────────────────────────────────
+# alias workvpn='nmcli connection up "Work VPN"'
+# alias workvpnoff='nmcli connection down "Work VPN"'
+
+# ── wake on lan ────────────────────────────────────────────────────────────
+# alias wol-desktop='wakeonlan aa:bb:cc:dd:ee:ff'
+
+# ── extra paths ────────────────────────────────────────────────────────────
+# export PATH="$HOME/.local/bin:$PATH"
+
+# ── host list for Ctrl+G ───────────────────────────────────────────────────
+# copy config/y3kh/ssh-hosts.txt here and edit it, or point elsewhere:
+# export Y3K_HOSTS="$HOME/.config/y3kh/my-hosts.txt"

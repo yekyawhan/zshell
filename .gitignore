@@ -1,0 +1,16 @@
+# runtime noise — never commit
+*.log
+*.swp
+.DS_Store
+__pycache__/
+# local secrets, if you ever add any
+secrets.env
+.env
+.env.local
+# generated wallpapers (installer regenerates them)
+desktop/wallpapers/
+
+# personal override (installed per machine, never committed)
+config/y3kh/local.zsh
+*.bak.*
+*.before

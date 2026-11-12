@@ -1,0 +1,12 @@
+# Hosts for the Ctrl+G launcher  (name | user | description)
+# Copy to your own list:  cp ssh-hosts.example.txt ssh-hosts.txt  and edit.
+# Blank lines and # comments are ignored.
+
+nas         | admin  | home NAS (files, backups)
+router      | root   | home router / firewall
+devbox      | user   | workstation on the LAN
+media       | user   | media server (jellyfin, *arr)
+lab-1       | root   | Proxmox node 1
+lab-2       | root   | Proxmox node 2
+vps         | root   | public VPS (web, mail relay)
+edge        | ubuntu | cloud VM (docker swarm manager)
